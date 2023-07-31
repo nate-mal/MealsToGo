@@ -25,13 +25,14 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   };
   const Title = styled.Text`
     color: ${(props) => props.theme.colors.ui.primary};
+    font-family: ${(props) => props.theme.fonts.body};
   `;
   const RestaurantContent = styled(Card.Content)`
     padding: ${(props) => props.theme.space[3]};
   `;
 
   const {
-    name = "Some Restaurant",
+    name = "Best Restaurant",
     icon,
     photos = [
       "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
