@@ -1,52 +1,41 @@
-import * as React from "react";
-import { Card } from "react-native-paper";
-import styled from "styled-components/native";
+import { Text } from "../../../components/typography/text.component";
 
-const cardTheme = {
-  roundness: 10,
-  isV3: false,
-};
+import {
+  RestaurantCard,
+  RestaurantContent,
+  RestaurantCover,
+  RestaurantRating,
+  Address,
+  ExtraInfoView,
+  ExtraInfoViewEnd,
+} from "./restaurant-info-card.styles";
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
-  const RestaurantCard = (props) => {
-    const StyledCard = styled(Card)``;
-    return (
-      <StyledCard elevation={5} theme={cardTheme} {...props}>
-        {props.children}
-      </StyledCard>
-    );
-  };
-  const RestaurantCover = (props) => {
-    const StyledCover = styled(Card.Cover)``;
-    return (
-      <StyledCover elevation={5} theme={cardTheme} {...props}>
-        {props.children}
-      </StyledCover>
-    );
-  };
-  const Title = styled.Text`
-    color: ${(props) => props.theme.colors.ui.primary};
-    font-family: ${(props) => props.theme.fonts.body};
-  `;
-  const RestaurantContent = styled(Card.Content)`
-    padding: ${(props) => props.theme.space[3]};
-  `;
-
   const {
     name = "Best Restaurant",
-    icon,
+    icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
     photos = [
       "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
     ],
     address = "Some address, str., nr.",
     isOpenNow = true,
     rating = 3,
-    isCloseTemporarily,
+    isCloseTemporarily = true,
   } = restaurant;
+
   return (
     <RestaurantCard>
       <RestaurantCover key={name} source={{ uri: photos[0] }} />
       <RestaurantContent>
-        <Title variant="titleLarge">{name}</Title>
+        <Text variant="label">{name}</Text>
+        <ExtraInfoView>
+          <RestaurantRating rating={rating} />
+          <ExtraInfoViewEnd
+            isOpenNow={isOpenNow}
+            isCloseTemporarily={isCloseTemporarily}
+            source={{ uri: icon }}
+          />
+        </ExtraInfoView>
+        <Address>{address}</Address>
       </RestaurantContent>
     </RestaurantCard>
   );
